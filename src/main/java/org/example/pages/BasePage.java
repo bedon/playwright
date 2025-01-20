@@ -4,36 +4,23 @@ import com.microsoft.playwright.Page;
 import io.qameta.allure.testng.AllureTestNg;
 import org.example.BaseTest;
 import org.example.annotations.FindBy;
+import org.example.elements.BaseLocatedElement;
+import org.example.interfaces.LocatorInitializer;
+import org.example.interfaces.LocatorWrapper;
 import org.example.utils.PageFactory;
 import org.testng.annotations.Listeners;
 
 import java.lang.reflect.Field;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-public abstract class BasePage {
+public abstract class BasePage implements LocatorInitializer {
     private String url = "https://jam.ua/";
     protected Page page;
     protected String mca = "";
 
     public BasePage(Page page) {
         initPage(page);
-        initLocators();
-    }
-
-    public void initLocators() {
-        Field[] fields = this.getClass().getDeclaredFields();
-        for (Field field : fields) {
-            if (field.isAnnotationPresent(FindBy.class)) {
-                FindBy annotation = field.getAnnotation(FindBy.class);
-                String selector = annotation.selector();
-                try {
-                    field.setAccessible(true);
-                    field.set(this, page.locator(selector));
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException("Не удалось инициализировать локатор: " + field.getName(), e);
-                }
-            }
-        }
+        initializeLocators(this, page);
     }
 
     public void initPage(Page page) {

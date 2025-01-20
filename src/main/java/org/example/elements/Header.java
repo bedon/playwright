@@ -1,14 +1,20 @@
 package org.example.elements;
 
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.AriaRole;
-import com.microsoft.playwright.options.BoundingBox;
-import com.microsoft.playwright.options.FilePayload;
-import com.microsoft.playwright.options.SelectOption;
+import io.qameta.allure.Step;
+import org.example.annotations.FindBy;
 
-import java.nio.file.Path;
-import java.util.List;
-import java.util.regex.Pattern;
+@FindBy(selector = "//*[@class='secondary-menu container-fluid']")
+public class Header extends BaseLocatedElement{
+    @FindBy(selector = ".//*[text()='Контакти']")
+    private Locator contactsLink;
 
-public class Header {
+    public Header(Page page) {
+        super(page);
+    }
+
+    @Step("Click 'Контакти' link")
+    public void contactsLink() {
+        contactsLink.click();
+    }
 }

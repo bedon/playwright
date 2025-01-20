@@ -10,6 +10,7 @@ public class PageFactory {
             BasePage instance = clazz.getDeclaredConstructor(Page.class).newInstance(page);
             return clazz.cast(instance);
         } catch (Exception e) {
+            e.printStackTrace();
         }
         throw new NullPointerException("Page class instantiation failed.");
     }

@@ -1,15 +1,24 @@
 package org.example.elements;
 
 import com.microsoft.playwright.Locator;
-import org.example.annotations.FindBy;
-import org.example.interfaces.LocatorWrapper;
+import com.microsoft.playwright.Page;
+import org.example.interfaces.LocatorInitializer;
+import org.example.interfaces.Locatable;
 
-@FindBy(selector = "//*[@class='secondary-menu container-fluid']")
-public class BaseLocatedElement implements LocatorWrapper {
-    private Locator locator;
+public abstract class BaseLocatedElement implements Locatable, LocatorInitializer {
+    protected Locator locator;
+
+    public BaseLocatedElement(Page page) {
+        initializeLocators(this, page);
+    }
 
     @Override
     public Locator getWrappedLocator() {
         return locator;
+    }
+
+    @Override
+    public void initLocator(Locator locator) {
+        this.locator = locator;
     }
 }
