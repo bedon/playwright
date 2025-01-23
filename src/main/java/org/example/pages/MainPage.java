@@ -26,6 +26,6 @@ public class MainPage extends BasePage{
     }
 
     public void openContacts() {
-        header.contactsLink();
+        //header.contactsLink();
     }
 }

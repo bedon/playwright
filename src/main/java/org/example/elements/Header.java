@@ -9,9 +9,10 @@ public class Header extends BaseLocatedElement{
     @FindBy(selector = ".//*[text()='Контакти']")
     private Locator contactsLink;
 
-    public Header(Page page) {
-        super(page);
+    public Header(Page page, String selector) {
+        super(page, selector);
     }
+
 
     @Step("Click 'Контакти' link")
     public void contactsLink() {
