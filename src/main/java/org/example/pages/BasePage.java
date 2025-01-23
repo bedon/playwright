@@ -6,7 +6,7 @@ import org.example.interfaces.LocatorInitializer;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public abstract class BasePage implements LocatorInitializer {
-    private String url = "https://jam.ua/";
+    private String url = "https://jam.ua/ua/";
     protected Page page;
     protected String mca = "";
 
@@ -31,10 +31,7 @@ public abstract class BasePage implements LocatorInitializer {
 
     public <T extends BasePage> T open() {
         page.navigate(url + mca);
+        validate();
         return (T) this;
-    }
-
-    public String getUrl() {
-        return page.url();
     }
 }

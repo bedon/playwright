@@ -11,6 +11,7 @@ public class GuitarsPage extends BasePage{
     }
 
     public GuitarsPage suckDick() {
+        header.clickContactsLink();
         return this;
     }
 }

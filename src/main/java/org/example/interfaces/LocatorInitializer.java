@@ -23,6 +23,7 @@ public interface LocatorInitializer {
                         String selector = annotation.selector();
                         BaseLocatedElement element = (BaseLocatedElement) chieldClass.getDeclaredConstructor(Page.class, String.class).newInstance(page, selector);
                         chieldClass.cast(element);
+                        field.set(this, element);
                     }
                 }
             } catch (Exception e) {

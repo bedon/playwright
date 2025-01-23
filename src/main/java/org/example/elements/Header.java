@@ -6,7 +6,7 @@ import org.example.annotations.FindBy;
 
 @FindBy(selector = "//*[@class='secondary-menu container-fluid']")
 public class Header extends BaseLocatedElement{
-    @FindBy(selector = ".//*[text()='Контакти']")
+    @FindBy(selector = "//*[text()='Контакти']")
     private Locator contactsLink;
 
     public Header(Page page, String selector) {
@@ -15,7 +15,7 @@ public class Header extends BaseLocatedElement{
 
 
     @Step("Click 'Контакти' link")
-    public void contactsLink() {
-        contactsLink.click();
+    public void clickContactsLink() {
+        locator.locator(contactsLink).click();
     }
 }
