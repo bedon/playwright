@@ -20,7 +20,6 @@ public interface LocatorInitializer {
                     } else if (Locatable.class.isAssignableFrom(field.getType())) {
                         Class<?> chieldClass = field.getType();
                         FindBy annotation = chieldClass.getAnnotation(FindBy.class);
-                        Thread.sleep(1);
                         String selector = annotation.selector();
                         BaseLocatedElement element = (BaseLocatedElement) chieldClass.getDeclaredConstructor(Page.class, String.class).newInstance(page, selector);
                         chieldClass.cast(element);
