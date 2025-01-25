@@ -12,6 +12,7 @@ public abstract class BasePage implements LocatorInitializer {
 
     public BasePage(Page page) {
         initPage(page);
+        initializeLocators(this.getClass(), page);
     }
 
     public void initPage(Page page) {
@@ -29,9 +30,8 @@ public abstract class BasePage implements LocatorInitializer {
     }
 
     public <T extends BasePage> T open() {
-        page.navigate(url + mca);
+        page.navigate(url + this.mca);
         validate();
-        initializeLocators(this.getClass(), page);
         return (T) this;
     }
 }

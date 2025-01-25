@@ -30,6 +30,7 @@ public class BaseTest {
     public void initPage() {
         browserContext = browser.newContext(new Browser.NewContextOptions().setViewportSize(null));
         page = browserContext.newPage();
+        page.navigate("https://jam.ua/ua/");
         mainPage = PageFactory.createInstance(page, MainPage.class).open();
     }
 

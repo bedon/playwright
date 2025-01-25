@@ -5,6 +5,7 @@ import com.microsoft.playwright.Page;
 import io.qameta.allure.Step;
 import org.example.annotations.FindBy;
 import org.example.elements.Header;
+import org.example.utils.PageFactory;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class MainPage extends BasePage{
     @Step("Open guitars page")
     public GuitarsPage openGuitarsPage() {
         link.click();
-        return new GuitarsPage(page);
+        return PageFactory.createInstance(page, GuitarsPage.class);
     }
 
     public Locator getLink() {
