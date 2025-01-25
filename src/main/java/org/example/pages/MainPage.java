@@ -6,10 +6,15 @@ import io.qameta.allure.Step;
 import org.example.annotations.FindBy;
 import org.example.elements.Header;
 
+import java.util.List;
+
 public class MainPage extends BasePage{
     @FindBy(selector = "//*[@href='/guitars' and @class='main-menu__link']")
     private Locator link;
+    @FindBy(selector = "//div[@class='main-logo']")
     private Header header;
+    @FindBy(selector = "//a[@class='main-menu__link']")
+    private List<Locator> locators;
 
     public MainPage(Page page) {
         super(page);
@@ -27,5 +32,9 @@ public class MainPage extends BasePage{
 
     public void openContacts() {
         header.clickContactsLink();
+    }
+
+    public List<Locator> qwe() {
+        return locators;
     }
 }

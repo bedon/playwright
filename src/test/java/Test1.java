@@ -7,8 +7,6 @@ public class Test1 extends BaseTest {
 
     @Test
     public void qwe11() throws InterruptedException {
-        GuitarsPage guitarsPage = mainPage.openGuitarsPage();
-        guitarsPage.suckDick();
-
+        mainPage.openContacts();
     }
 }
