@@ -73,7 +73,18 @@ public interface LocatorInitializer {
                 field.set(this, page.locator(selector));
             }
         } else if (field.getType().equals(List.class)) {
+            ParameterizedType parameterizedType = (ParameterizedType) field.getGenericType();
+            Type[] types = parameterizedType.getActualTypeArguments();
 
+            if (types.length > 0) {
+                Class<?> actualType = (Class<?>) types[0];
+                String selector = actualType.getAnnotation(FindBy.class).selector();
+
+                if (actualType.equals(Locatable.class)) {
+                    List<BaseLocatedElement> baseLocatedElementList = page.locator(selector).all().stream().map(locator -> createLocatableInstance(field.getType(), page, selector)).collect(Collectors.toList());
+                    field.set(this, baseLocatedElementList);
+                }
+            }
         } else if (Locatable.class.isAssignableFrom(field.getType())) {
             Class<?> fieldType = field.getType();
             String selector = fieldType.getAnnotation(FindBy.class).selector();
